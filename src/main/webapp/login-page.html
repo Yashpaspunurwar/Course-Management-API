@@ -1,0 +1,170 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="./CSS/login-pg.css">
+<title>Interactive Platform</title>
+<style>
+    /* General body styling */
+    body {
+        font-family: 'Arial', sans-serif;
+        background-color: #f5f5f5;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+    /* Container styling */
+    .container {
+        max-width: 400px;
+        width: 100%;
+        background-color: #fff;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+        text-align: center;
+        color: #333;
+        margin-bottom: 20px;
+        font-size: 24px;
+    }
+
+    .tabs {
+        display: flex;
+        justify-content: space-around;
+        margin-bottom: 20px;
+    }
+
+    .tabs button {
+        padding: 10px 20px;
+        border: none;
+        background-color: #053467;
+        color: #fff;
+        cursor: pointer;
+        border-radius: 5px;
+        font-size: 16px;
+        transition: background-color 0.3s;
+    }
+
+    .tabs button:hover {
+        background-color: #1483f9;
+    }
+
+    .tabs button.active {
+        background-color: #053467;
+    }
+
+    .form {
+        display: none;
+    }
+
+    .form.active {
+        display: block;
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+    }
+
+    label {
+        margin-bottom: 5px;
+        color: #555;
+    }
+
+    input[type="text"],
+    input[type="password"] {
+        padding: 10px;
+        margin-bottom: 15px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        font-size: 16px;
+    }
+
+    button[type="submit"] {
+        padding: 10px;
+        border: none;
+        background-color: #068d25;
+        color: #fff;
+        cursor: pointer;
+        border-radius: 5px;
+        font-size: 16px;
+        transition: background-color 0.3s;
+    }
+
+    button[type="submit"]:hover {
+        background-color: #03e033;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Welcome to the Interactive Platform</h2>
+    <div class="tabs">
+        <button id="studentTab" class="active" onclick="showForm('studentForm')">Student</button>
+        <button id="instructorTab" onclick="showForm('instructorForm')">Instructor</button>
+    </div>
+
+    <div id="studentForm" class="form active">
+        <form action="signup_controller" method="post">
+            <label for="studentUsername">Username:</label>
+            <input type="text" id="studentUsername" name="studentUsername" required>
+
+            <label for="studentPassword">Password:</label>
+            <input type="password" id="studentPassword" name="studentPassword" required>
+
+            <button type="submit">Login as Student</button>
+        </form>
+    </div>
+
+    <div id="instructorForm" class="form">
+        <form action="signup_controller" method="post">
+            <label for="instructorUsername">Username:</label>
+            <input type="text" id="instructorUsername" name="instructorUsername" required>
+
+            <label for="instructorPassword">Password:</label>
+            <input type="password" id="instructorPassword" name="instructorPassword" required>
+
+            <button type="submit">Login as Instructor</button>
+        </form>
+    </div>
+</div>
+
+<script>
+    function showForm(formId) {
+        var forms = document.querySelectorAll('.form');
+        var tabs = document.querySelectorAll('.tabs button');
+
+        forms.forEach(function(form) {
+            form.classList.remove('active');
+        });
+
+        tabs.forEach(function(tab) {
+            tab.classList.remove('active');
+        });
+
+        var selectedForm = document.getElementById(formId);
+        var selectedTab = document.querySelector(`#${formId}Tab`);
+
+        if (selectedForm) {
+            selectedForm.classList.add('active');
+        }
+
+        if (selectedTab) {
+            selectedTab.classList.add('active');
+        }
+    }
+
+    document.getElementById('studentTab').classList.add('active');
+    document.getElementById('studentForm').classList.add('active');
+</script>
+</body>
+</html>
